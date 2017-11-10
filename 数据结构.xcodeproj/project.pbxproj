@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BBA7983B1FB4264000B1C527 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = BBA7983A1FB4264000B1C527 /* main.c */; };
+		BBA798441FB426B300B1C527 /* chainLine.c in Sources */ = {isa = PBXBuildFile; fileRef = BBA798431FB426B300B1C527 /* chainLine.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,9 @@
 /* Begin PBXFileReference section */
 		BBA798371FB4264000B1C527 /* 数据结构 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "数据结构"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA7983A1FB4264000B1C527 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		BBA798411FB4266C00B1C527 /* mainHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mainHead.h; sourceTree = "<group>"; };
+		BBA798421FB426B300B1C527 /* chainLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chainLine.h; sourceTree = "<group>"; };
+		BBA798431FB426B300B1C527 /* chainLine.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = chainLine.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +61,10 @@
 		BBA798391FB4264000B1C527 /* 数据结构 */ = {
 			isa = PBXGroup;
 			children = (
+				BBA798411FB4266C00B1C527 /* mainHead.h */,
 				BBA7983A1FB4264000B1C527 /* main.c */,
+				BBA798421FB426B300B1C527 /* chainLine.h */,
+				BBA798431FB426B300B1C527 /* chainLine.c */,
 			);
 			path = "数据结构";
 			sourceTree = "<group>";
@@ -120,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBA7983B1FB4264000B1C527 /* main.c in Sources */,
+				BBA798441FB426B300B1C527 /* chainLine.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

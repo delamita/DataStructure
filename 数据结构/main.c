@@ -6,10 +6,29 @@
 //  Copyright © 2017年 LCC. All rights reserved.
 //
 
-#include <stdio.h>
+
+#include "mainHead.h"
+
+Error error;
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     printf("Hello, World!\n");
+    
+    chainLine cl = clInit();
+
+    int a = 3;
+    
+    clAddNodeTo(&cl, &a, Int);
+    clAddNodeTo(&cl, (void *)'c', Char);
+    clAddNodeTo(&cl, "3", String);
+    clAddNodeTo(&cl, "4", String);
+    
+    ptChainLine(cl);
+    
+    node *arm;
+    
+    arm =  clScNodeBeforeValue( cl, "4");
+    
     return 0;
 }
