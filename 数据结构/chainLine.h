@@ -89,6 +89,19 @@ bool clisSameTypeCheck(chainLine *chainline);
 
 
 /**
+ 0.0.4 chainline Add newNode without same value
+ 向目标链表添加节点，如果新节点的值已经存在就不再添加
+ 
+ @param chainline 添加的目标链表
+ @param data 新添加的数据
+ @param dataType 新添加的数据类型
+ @return 返回添加后的链表
+ */
+chainLine clAddNodeWithoutSame(chainLine *chainline, void *data, type dataType);
+
+
+
+/**
  0.1.0 chainLinePrint
  打印一个链表
  
@@ -121,6 +134,8 @@ chainLine clInitByValuefor(int lenght,void *data, type dataType);
 chainLine clRemoveAll(chainLine *chainline);
 
 
+
+
 /**
  0.2.2 chainLine remove index node
  删除指定位置的节点
@@ -130,6 +145,8 @@ chainLine clRemoveAll(chainLine *chainline);
  @return 返回删除后的链表
  */
 chainLine clReomoveIndex(chainLine *chainline,int index);
+
+
 
 
 
@@ -145,7 +162,6 @@ node *clRemoveByValue(chainLine *chainline, void *data);
 
 
 
-
 /**
  0.3.0 chainline search node by Value
  在链表中查找并返回指定值的节点
@@ -158,6 +174,29 @@ node *clRemoveByValue(chainLine *chainline, void *data);
 node *clSearchNodeByValue(const chainLine chainline, void *data);
 
 
+
+
+
+/**
+ 0.3.0.1 chainline search node by value and dataType
+ 再链表中查找并返回指定值和值类型的节点
+ 
+ @param chainline 查找的链表
+ @param data 查找的数据
+ @param dataType 查找的数据类型
+ @return 返回查找到的节点，未找到返回NULL
+ */
+node *clSearchNodeByValueAndType(const chainLine chainline, void *data, type dataType);
+
+
+
+
+
+
+
+
+
+
 /**
  0.3.1 chainline search before node by Value
  在链表中查找并返回指定值之前的节点
@@ -167,6 +206,18 @@ node *clSearchNodeByValue(const chainLine chainline, void *data);
  @return 返回查找到的节点，未找到或数据在头结点中时返回NULL
  */
 node *clScNodeBeforeValue(const chainLine chainline, void *data);
+
+
+
+/**
+ 0.4.0 chainline conect
+ 直接连接两个链表，并把尾链表初始化
+ 
+ @param headchainline 连接的头链表
+ @param taicChainline 连接的尾链表
+ @return 连接后的链表
+ */
+chainLine clconect(chainLine *headchainline, chainLine *taicChainline);
 
 
 

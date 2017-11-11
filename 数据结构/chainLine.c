@@ -11,7 +11,6 @@
 extern Error error;
 
 
-
 Error addError(int errorCode, char *errorDescription){
     
     error.errorCode = errorCode;
@@ -24,8 +23,8 @@ Error addError(int errorCode, char *errorDescription){
 
 
 
-/**
- 0.0.1 chainLineInit
+/**     0.0.1
+ chainLineInit
  初始化并返回一个为空的链表
  
  @return 空链表
@@ -45,8 +44,8 @@ chainLine clInit(){
 
 
 
-/**
- 0.0.2 chainLine Add newNode
+/**     0.0.2
+ chainLine Add newNode
  向目标链表添加节点
  
  @param chainline 添加的目标链表
@@ -70,7 +69,10 @@ chainLine clAddNodeTo(chainLine *chainline,void *data,type dataType){
         chainline->lastNode->nextNode = newNode;
     }
     
-    if (chainline->dataTpye!=newNode->dataType) {
+    if (chainline->dataTpye==Void) {
+        chainline->dataTpye=newNode->dataType;
+    }
+    else if (chainline->dataTpye!=newNode->dataType) {
         chainline->dataTpye = Multiple;
         chainline->isSameType = false;
     }
@@ -84,8 +86,8 @@ chainLine clAddNodeTo(chainLine *chainline,void *data,type dataType){
 
 
 
-/**
- 0.0.3 chainline is Same type check
+/**     0.0.3
+ chainline is Same type check
  检查链表的数据类型是否相同，并更新
 
  @param chainline 需要检查的链表
@@ -122,9 +124,29 @@ bool clisSameTypeCheck(chainLine *chainline){
 
 
 
+/**     0.0.4
+ chainline Add newNode without same value
+ 向目标链表添加节点，如果新节点的值已经存在就不再添加
 
-/**
- 0.1.0 chainLinePrint
+ @param chainline 添加的目标链表
+ @param data 新添加的数据
+ @param dataType 新添加的数据类型
+ @return 返回添加后的链表
+ */
+chainLine clAddNodeWithoutSame(chainLine *chainline, void *data, type dataType) {
+    
+    if (clSearchNodeByValueAndType(*chainline, data, dataType)==NULL) {
+        clAddNodeTo(chainline, data, dataType);
+    }
+    
+    return *chainline;
+}
+
+
+
+
+/**     0.1.0
+ chainLinePrint
  打印一个链表
 
  @param chainline 需要打印的链表
@@ -191,8 +213,8 @@ int ptChainLine(const chainLine chainline){
 
 
 
-/**
- 0.1.1 chainLineInitByValueForLength
+/**     0.1.1
+ chainLineInitByValueForLength
  初始化并返回一个固定长度和默认值的链表
 
  @param lenght 默认长度
@@ -212,8 +234,9 @@ chainLine clInitByValuefor(int lenght, void *data, type dataType){
 
 
 
-/**
- 0.2.1 chainline RemoveAll Node
+
+/** 0.2.1
+ chainline RemoveAll Node
  删除链表的所有节点
 
  @param chainline 删除的目标链表
@@ -232,8 +255,10 @@ chainLine clRemoveAll(chainLine *chainline){
 }
 
 
-/**
- 0.2.2 chainLine remove index node
+
+
+/**     0.2.2
+ chainLine remove index node
  删除指定位置的节点
 
  @param chainline 需要操作的链表
@@ -272,8 +297,10 @@ chainLine clReomoveIndex(chainLine *chainline,int index){
 }
 
 
-/**
- 0.2.3 chainLine RemoveByValue
+
+
+/**     0.2.3
+ chainLine RemoveByValue
  删除指定值的节点，如有多个删除第一个找到的
 
  @param chainline 需要操作的链表
@@ -311,8 +338,8 @@ node *clRemoveByValue(chainLine *chainline, void *data){
 
 
 
-/**
- 0.3.0 chainline search node by Value
+/**     0.3.0
+ chainline search node by Value
  在链表中查找并返回指定值的节点
  
  @param chainline 查找的链表
@@ -325,6 +352,7 @@ node *clSearchNodeByValue(const chainLine chainline, void *data){
     
     for (node *arm=chainline.head;arm!=NULL; arm=arm->nextNode) {
         if (arm->data==data) {
+
             newNode = arm;
             break;
         }
@@ -338,8 +366,42 @@ node *clSearchNodeByValue(const chainLine chainline, void *data){
 }
 
 
-/**
- 0.3.1 chainline search before node by Value
+
+/**     0.3.0.1
+ chainline search node by value and dataType
+ 再链表中查找并返回指定值和值类型的节点
+
+ @param chainline 查找的链表
+ @param data 查找的数据
+ @param dataType 查找的数据类型
+ @return 返回查找到的节点，未找到返回NULL
+ */
+node *clSearchNodeByValueAndType(const chainLine chainline, void *data, type dataType){
+    
+    node *newNode = NULL;
+    
+    for (node *arm=chainline.head;arm!=NULL; arm=arm->nextNode) {
+        if (arm->data==data) {
+            
+            if (arm->dataType==dataType) {
+                newNode = arm;
+                break;
+            }
+        }
+    }
+    
+    if (newNode==NULL) {
+        addError(0, "未找到节点");
+    }
+    
+    return newNode;
+}
+
+
+
+
+/**     0.3.1
+ chainline search before node by Value
  在链表中查找并返回指定值之前的节点
  注意:当指定值在头节点中时返回为NULL，所以使用时一定要对是否在头结点中进行单独检验。
 
@@ -366,4 +428,26 @@ node *clScNodeBeforeValue(const chainLine chainline, void *data){
 }
 
 
+
+
+/**     0.4.0
+ chainline conect
+ 直接连接两个链表，并把尾链表初始化
+
+ @param headchainline 连接的头链表
+ @param taicChainline 连接的尾链表
+ @return 连接后的链表
+ */
+chainLine clconect(chainLine *headchainline, chainLine *taicChainline) {
+    
+    headchainline->lastNode->nextNode = taicChainline->head;
+    headchainline->lastNode = taicChainline->lastNode;
+    headchainline->length += taicChainline->length;
+    
+    clisSameTypeCheck(headchainline);
+    
+    clRemoveAll(taicChainline);
+    
+    return *headchainline;
+}
 

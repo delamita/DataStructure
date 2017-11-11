@@ -25,19 +25,21 @@ int main(int argc, const char * argv[]) {
     clAddNodeTo(&cl, "3", String);
     clAddNodeTo(&cl, "4", String);
     clAddNodeTo(&cl, &a, pInt);
-    clAddNodeTo(&cl, &a, p);
     clAddNodeTo(&cl, &s, pChar);
     
     ptChainLine(cl);
     
-    node *arm;
+    chainLine ch = clInitByValuefor(5, (void *)6, Int);
     
-    arm =  clScNodeBeforeValue( cl, "4");
+    ptChainLine(ch);
     
-    clRemoveByValue(&cl, &a);
-    clRemoveByValue(&cl, &a);
+    clconect(&ch, &cl);
     
-    ptChainLine(cl);
+    ptChainLine(ch);
+    
+    clAddNodeWithoutSame(&ch, (void *)6, Int);
+    
+    ptChainLine(ch);
     
     return 0;
 }
