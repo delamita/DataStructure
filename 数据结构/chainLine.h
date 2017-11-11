@@ -24,14 +24,14 @@ typedef enum {
     Void,       //0
     Multiple,   //1
     Int,        //2
-    String,     //3
-    Char,       //4
-    p,
-    pInt,
-    pChar,
-    Array
+    Char,       //3
+    String,     //4
+    p,          //5
+    pInt,       //6
+    pChar,      //7
+    Array       //8
     
-    
+
 }type;
 
 typedef struct node{
@@ -134,8 +134,22 @@ chainLine clReomoveIndex(chainLine *chainline,int index);
 
 
 /**
+ 0.2.3 chainLine RemoveByValue
+ 删除指定值的节点，如有多个删除第一个找到的
+ 
+ @param chainline 需要操作的链表
+ @param data 删除的数据
+ @return 返回被删除的节点指针
+ */
+node *clRemoveByValue(chainLine *chainline, void *data);
+
+
+
+
+/**
  0.3.0 chainline search node by Value
  在链表中查找并返回指定值的节点
+ 注意:当指定值在头节点中时返回为NULL，所以使用时一定要对是否在头结点中进行单独检验。
  
  @param chainline 查找的链表
  @param data 查找的数据

@@ -152,14 +152,29 @@ int ptChainLine(const chainLine chainline){
             
             switch (arm->dataType) {
                 case Int:
-                    printf("%s%d",head,*(int *)(arm->data));
+                    printf("%s%d",head,(int)(arm->data));
                     break;
+                    
                 case String:
                     printf("%s%s",head,(char *)(arm->data));
                     break;
+                    
                 case Char:
                     printf("%s%c",head,(char)(arm->data));
                     break;
+                    
+                case p:
+                    printf("%s%d",head,(int)(arm->data));
+                    break;
+                    
+                case pInt:
+                    printf("%s%d",head,*(int *)(arm->data));
+                    break;
+                    
+                case pChar:
+                    printf("%s%c",head,*(char *)(arm->data));
+                    break;
+                    
                 default:
                     break;
             }
@@ -258,13 +273,14 @@ chainLine clReomoveIndex(chainLine *chainline,int index){
 
 
 /**
- <#Description#>
+ 0.2.3 chainLine RemoveByValue
+ 删除指定值的节点，如有多个删除第一个找到的
 
- @param chainline <#chainline description#>
- @param data <#data description#>
- @return <#return value description#>
+ @param chainline 需要操作的链表
+ @param data 删除的数据
+ @return 返回被删除的节点指针
  */
-node *chRemoveByValue(chainLine *chainline, void *data){
+node *clRemoveByValue(chainLine *chainline, void *data){
     
     node *newNode = NULL;
     
@@ -279,6 +295,13 @@ node *chRemoveByValue(chainLine *chainline, void *data){
             clisSameTypeCheck(chainline);
         }
         
+    }
+    else{
+        if (chainline->head!=NULL) {
+            if (chainline->head->data==data) {
+                clReomoveIndex(chainline, 0);
+            }
+        }
     }
  
     return newNode;
@@ -318,6 +341,7 @@ node *clSearchNodeByValue(const chainLine chainline, void *data){
 /**
  0.3.1 chainline search before node by Value
  在链表中查找并返回指定值之前的节点
+ 注意:当指定值在头节点中时返回为NULL，所以使用时一定要对是否在头结点中进行单独检验。
 
  @param chainline 查找的链表
  @param data 查找的数据
