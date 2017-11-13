@@ -10,7 +10,10 @@
 #define mainHead_h
 
 #include <stdio.h>
+
 #include "chainLine.h"
+
+#include "stack.h"
 
 
 #define FINE 0
@@ -23,7 +26,21 @@ typedef struct{
     char *errorDescription;
 }Error;
 
+Error error;
 
+typedef enum{
+    
+    Void,       //0
+    Multiple,   //1
+    Int,        //2
+    Char,       //3
+    String,     //4
+    p,          //5
+    pInt,       //6
+    pChar,      //7
+    Array       //8
+    
+}type;
 
 
 #endif /* mainHead_h */

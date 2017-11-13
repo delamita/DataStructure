@@ -10,7 +10,6 @@
 
 extern Error error;
 
-
 Error addError(int errorCode, char *errorDescription){
     
     error.errorCode = errorCode;
@@ -18,8 +17,6 @@ Error addError(int errorCode, char *errorDescription){
     
     return error;
 }
-
-
 
 
 
@@ -36,7 +33,7 @@ chainLine clInit(){
     cl.head = NULL;
     cl.lastNode = NULL;
     cl.isSameType = true;
-    cl.dataTpye = Void;
+    cl.dataType = Void;
 
     return cl;
 }
@@ -53,7 +50,7 @@ chainLine clInit(){
  @param dataType 新添加节点数据的类型
  @return 修改后的链表
  */
-chainLine clAddNodeTo(chainLine *chainline,void *data,type dataType){
+chainLine clAddNodeT(chainLine *chainline,void *data,type dataType){
     
     node *newNode;
     newNode = (node *)malloc(sizeof(node));
@@ -69,11 +66,11 @@ chainLine clAddNodeTo(chainLine *chainline,void *data,type dataType){
         chainline->lastNode->nextNode = newNode;
     }
     
-    if (chainline->dataTpye==Void) {
-        chainline->dataTpye=newNode->dataType;
+    if (chainline->dataType==Void) {
+        chainline->dataType=newNode->dataType;
     }
-    else if (chainline->dataTpye!=newNode->dataType) {
-        chainline->dataTpye = Multiple;
+    else if (chainline->dataType!=newNode->dataType) {
+        chainline->dataType = Multiple;
         chainline->isSameType = false;
     }
     
@@ -110,11 +107,11 @@ bool clisSameTypeCheck(chainLine *chainline){
 
     
     if (isSame) {
-        chainline->dataTpye = chainline->head->dataType;
+        chainline->dataType = chainline->head->dataType;
         chainline->isSameType = true;
     }
     else{
-        chainline->dataTpye = Multiple;
+        chainline->dataType = Multiple;
         chainline->isSameType = false;
     }
 
@@ -124,8 +121,8 @@ bool clisSameTypeCheck(chainLine *chainline){
 
 
 
-/**     0.0.4
- chainline Add newNode without same value
+/**     0.0.4)
+ chainline Add newNode without same value.
  向目标链表添加节点，如果新节点的值已经存在就不再添加
 
  @param chainline 添加的目标链表
@@ -136,11 +133,50 @@ bool clisSameTypeCheck(chainLine *chainline){
 chainLine clAddNodeWithoutSame(chainLine *chainline, void *data, type dataType) {
     
     if (clSearchNodeByValueAndType(*chainline, data, dataType)==NULL) {
-        clAddNodeTo(chainline, data, dataType);
+        clAddNodeT(chainline, data, dataType);
     }
     
     return *chainline;
 }
+
+
+
+
+/** cl.0.0.5)
+ chainline Add newNode without dataType
+ 向目标链表添加没有数据类型的节点，新节点的数据类型与链表的数据类型相同
+ 
+ @param chainline 添加的目标链表
+ @param data 新添加数据
+ @return 返回添加后的链表
+ */
+chainLine clAddNod(chainLine *chainline, void *data){
+    
+    if (chainline->isSameType != true) {
+        addError(0, "无法添加，目标链表的数据类型为多种");
+        return *chainline;
+    }
+    
+    node *newNode;
+    newNode = (node *)malloc(sizeof(node));
+    
+    newNode->data = data;
+    newNode->nextNode = NULL;
+    newNode->dataType = chainline->dataType;
+    
+    if (chainline->length==0) {
+        chainline->head = newNode;
+    }
+    else{
+        chainline->lastNode->nextNode = newNode;
+    }
+    
+    chainline->lastNode = newNode;
+    chainline->length += 1;
+    
+    return *chainline;
+}
+
 
 
 
@@ -154,9 +190,45 @@ chainLine clAddNodeWithoutSame(chainLine *chainline, void *data, type dataType) 
  */
 int ptChainLine(const chainLine chainline){
     
+    char *type = "Void";
+    
+    switch (chainline.dataType) {
+        case Int:
+            type = "Int";
+            break;
+            
+        case String:
+            type = "String";
+            break;
+            
+        case Char:
+            type = "Char";
+            break;
+            
+        case p:
+            type = "p";
+            break;
+            
+        case pInt:
+            type = "pInt";
+            break;
+            
+        case pChar:
+            type = "pChar";
+            break;
+            
+        case Multiple:
+            type = "Multiple";
+            
+        case Array:
+            type = "Array";
+            
+        default:
+            break;
+    }
+    
 
-    printf("[ {length: %d, dataType: %u} :",chainline.length,(type)chainline.dataTpye);
-;
+    printf("[ {length: %d, dataType: %s} :",chainline.length,type);
     
     if (chainline.length == 0) {
         printf("链表为空 ]\n");
@@ -226,7 +298,7 @@ chainLine clInitByValuefor(int lenght, void *data, type dataType){
     chainLine cl = clInit();
     
     for (int i=0; i<lenght; i++) {
-        clAddNodeTo(&cl, data, dataType);
+        clAddNodeT(&cl, data, dataType);
     }
 
     return cl;
@@ -245,7 +317,7 @@ chainLine clInitByValuefor(int lenght, void *data, type dataType){
 chainLine clRemoveAll(chainLine *chainline){
 
     chainline->head = NULL;
-    chainline->dataTpye = Void;
+    chainline->dataType = Void;
     chainline->isSameType = true;
     chainline->lastNode = NULL;
     chainline->length = 0;

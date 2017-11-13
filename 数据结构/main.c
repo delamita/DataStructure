@@ -9,7 +9,6 @@
 
 #include "mainHead.h"
 
-Error error;
 
 int main(int argc, const char * argv[]) {
     // insert code here...
@@ -20,12 +19,12 @@ int main(int argc, const char * argv[]) {
     int a= 6;
     char s = 's';
     
-    clAddNodeTo(&cl, (void *)3, Int);
-    clAddNodeTo(&cl, (void *)'c', Char);
-    clAddNodeTo(&cl, "3", String);
-    clAddNodeTo(&cl, "4", String);
-    clAddNodeTo(&cl, &a, pInt);
-    clAddNodeTo(&cl, &s, pChar);
+    clAddNodeT(&cl, (void *)3, Int);
+    clAddNodeT(&cl, (void *)'c', Char);
+    clAddNodeT(&cl, "3", String);
+    clAddNodeT(&cl, "4", String);
+    clAddNodeT(&cl, &a, pInt);
+    clAddNodeT(&cl, &s, pChar);
     
     ptChainLine(cl);
     

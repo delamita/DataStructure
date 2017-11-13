@@ -9,30 +9,16 @@
 #define print(VAR) printf(#VAR)
 
 #ifndef chainLine_h
+
 #define chainLine_h
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
-
 #include "mainHead.h"
 
-typedef enum {
-    
-    
-    Void,       //0
-    Multiple,   //1
-    Int,        //2
-    Char,       //3
-    String,     //4
-    p,          //5
-    pInt,       //6
-    pChar,      //7
-    Array       //8
-    
 
-}type;
 
 typedef struct node{
     
@@ -48,7 +34,7 @@ typedef struct{
     node *head;
     node *lastNode;
     bool isSameType;
-    type dataTpye;
+    type dataType;
     
 } chainLine;
 
@@ -72,7 +58,7 @@ chainLine clInit(void);
  @param chainline 新添加节点数据的类型
  @return 修改后的链表
  */
-chainLine clAddNodeTo(chainLine *chainline,void *data, type dataType);
+chainLine clAddNodeT(chainLine *chainline,void *data, type dataType);
 
 
 

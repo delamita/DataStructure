@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB1CE50E1FB965E000A26B03 /* stack.c in Sources */ = {isa = PBXBuildFile; fileRef = BB1CE50D1FB965E000A26B03 /* stack.c */; };
 		BBA7983B1FB4264000B1C527 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = BBA7983A1FB4264000B1C527 /* main.c */; };
 		BBA798441FB426B300B1C527 /* chainLine.c in Sources */ = {isa = PBXBuildFile; fileRef = BBA798431FB426B300B1C527 /* chainLine.c */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BB1CE50C1FB965E000A26B03 /* stack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		BB1CE50D1FB965E000A26B03 /* stack.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stack.c; sourceTree = "<group>"; };
 		BBA798371FB4264000B1C527 /* 数据结构 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "数据结构"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA7983A1FB4264000B1C527 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		BBA798411FB4266C00B1C527 /* mainHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mainHead.h; sourceTree = "<group>"; };
@@ -65,6 +68,8 @@
 				BBA7983A1FB4264000B1C527 /* main.c */,
 				BBA798421FB426B300B1C527 /* chainLine.h */,
 				BBA798431FB426B300B1C527 /* chainLine.c */,
+				BB1CE50C1FB965E000A26B03 /* stack.h */,
+				BB1CE50D1FB965E000A26B03 /* stack.c */,
 			);
 			path = "数据结构";
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB1CE50E1FB965E000A26B03 /* stack.c in Sources */,
 				BBA7983B1FB4264000B1C527 /* main.c in Sources */,
 				BBA798441FB426B300B1C527 /* chainLine.c in Sources */,
 			);
@@ -185,6 +191,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-all_load";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -233,6 +240,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-all_load";
 				SDKROOT = macosx;
 			};
 			name = Release;
