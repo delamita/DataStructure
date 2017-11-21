@@ -10,9 +10,9 @@
 #define stack_h
 
 #include <stdio.h>
+#include <stdbool.h>
 
-#include "mainHead.h"
-
+#include "common.h"
 
 typedef struct stNode{
     void *data;

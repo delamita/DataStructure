@@ -8,15 +8,6 @@
 
 #include "chainLine.h"
 
-extern Error error;
-
-Error addError(int errorCode, char *errorDescription){
-    
-    error.errorCode = errorCode;
-    error.errorDescription = errorDescription;
-    
-    return error;
-}
 
 
 
@@ -114,7 +105,7 @@ bool clisSameTypeCheck(chainLine *chainline){
         chainline->dataType = Multiple;
         chainline->isSameType = false;
     }
-
+    
     return chainline->isSameType;
 }
 
@@ -153,7 +144,7 @@ chainLine clAddNodeWithoutSame(chainLine *chainline, void *data, type dataType) 
 chainLine clAddNod(chainLine *chainline, void *data){
     
     if (chainline->isSameType != true) {
-        addError(0, "无法添加，目标链表的数据类型为多种");
+        //addError(0, "无法添加，目标链表的数据类型为多种");
         return *chainline;
     }
     
@@ -340,7 +331,7 @@ chainLine clRemoveAll(chainLine *chainline){
 chainLine clReomoveIndex(chainLine *chainline,int index){
     
     if (index>=chainline->length) {
-        addError(0, "范围超出链表");
+        //addError(0, "范围超出链表");
         return *chainline;
     }
     else{
@@ -431,7 +422,7 @@ node *clSearchNodeByValue(const chainLine chainline, void *data){
     }
     
     if (newNode==NULL) {
-        addError(0, "未找到节点");
+        //addError(0, "未找到节点");
     }
     
     return newNode;
@@ -463,7 +454,7 @@ node *clSearchNodeByValueAndType(const chainLine chainline, void *data, type dat
     }
     
     if (newNode==NULL) {
-        addError(0, "未找到节点");
+        //addError(0, "未找到节点");
     }
     
     return newNode;

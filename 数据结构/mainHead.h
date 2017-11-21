@@ -11,9 +11,9 @@
 
 #include <stdio.h>
 
-#include "chainLine.h"
 
-#include "stack.h"
+//#include "chainLine.h"
+//#include "stack.h"
 
 
 #define FINE 0
@@ -21,12 +21,7 @@
 #define true 1
 #define false 0
 
-typedef struct{
-    int errorCode;
-    char *errorDescription;
-}Error;
 
-Error error;
 
 typedef enum{
     

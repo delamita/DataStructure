@@ -7,6 +7,7 @@
 //
 
 #include "stack.h"
+#include <stdlib.h>
 
 extern Error error;
 
@@ -69,7 +70,8 @@ stack stPush( stack *stack, void *data){
     }
     
     
-    stNode *newStNode = (stNode *)malloc(sizeof(stNode));
+    stNode *newStNode;
+    newStNode = (stNode *)malloc(sizeof(stNode));
     
     newStNode->data = data;
     newStNode->dataType = stack->dataType;
